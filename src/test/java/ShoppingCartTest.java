@@ -22,11 +22,30 @@ public class ShoppingCartTest {
     }
 
     @Test
+    public void testTwoApplesCosts60() {
+        final ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addItem(Item.APPLE);
+        shoppingCart.addItem(Item.APPLE);
+
+        assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(60)));
+    }
+
+    @Test
     public void testOneOrangeCosts25() {
         final ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.addItem(Item.ORANGE);
 
         assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(25)));
+    }
+
+    @Test
+    public void testThreeOrangesCosts50() {
+        final ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addItem(Item.ORANGE);
+        shoppingCart.addItem(Item.ORANGE);
+        shoppingCart.addItem(Item.ORANGE);
+
+        assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(50)));
     }
 
     @Test
@@ -52,7 +71,7 @@ public class ShoppingCartTest {
         shoppingCart.addItem(Item.ORANGE);
         shoppingCart.addItem(Item.APPLE);
 
-        assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(205)));
+        assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(145)));
     }
 
 }
