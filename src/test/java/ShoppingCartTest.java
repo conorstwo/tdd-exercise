@@ -15,32 +15,42 @@ public class ShoppingCartTest {
 
     @Test
     public void testOneAppleCosts60() {
-        final List<Item> items = Arrays.asList(Item.APPLE);
-        final ShoppingCart shoppingCart = new ShoppingCart(items);
+        final ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addItem(Item.APPLE);
 
         assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(60)));
     }
 
     @Test
     public void testOneOrangeCosts25() {
-        final List<Item> items = Arrays.asList(Item.ORANGE);
-        final ShoppingCart shoppingCart = new ShoppingCart(items);
+        final ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addItem(Item.ORANGE);
 
         assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(25)));
     }
 
     @Test
     public void testEmptyBasketCosts0() {
-        final List<Item> items = Arrays.asList();
-        final ShoppingCart shoppingCart = new ShoppingCart(items);
+        final ShoppingCart shoppingCart = new ShoppingCart();
+
+        assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(0)));
+    }
+
+    @Test
+    public void testBasketContainingNullCosts0() {
+        final ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addItem(null);
 
         assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(0)));
     }
 
     @Test
     public void testCalculateTotal() {
-        final List<Item> items = Arrays.asList(Item.APPLE, Item.APPLE, Item.ORANGE, Item.APPLE);
-        final ShoppingCart shoppingCart = new ShoppingCart(items);
+        final ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addItem(Item.APPLE);
+        shoppingCart.addItem(Item.APPLE);
+        shoppingCart.addItem(Item.ORANGE);
+        shoppingCart.addItem(Item.APPLE);
 
         assertThat(shoppingCart.calculateTotalCost(), is(new BigDecimal(205)));
     }
